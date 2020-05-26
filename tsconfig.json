@@ -6,7 +6,7 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "outDir": "dist",
-    "baseDir": ".",
+    "baseUrl": "/.",
     "paths": {
       "*": [
         "node_modules/*"
