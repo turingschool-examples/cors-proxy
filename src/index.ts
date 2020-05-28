@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'; dotenv.config();
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import cors from 'cors';
