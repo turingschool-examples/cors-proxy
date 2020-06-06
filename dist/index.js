@@ -9,6 +9,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const node_fetch_1 = __importDefault(require("node-fetch"));
 const cors_1 = __importDefault(require("cors"));
 const express = require("express");
+const fetch_headers_1 = __importDefault(require("fetch-headers"));
 const port = process.env.PORT || 8080;
 const app = express();
 const requestLimit = process.env.LIMIT || '100kb';
@@ -25,10 +26,8 @@ app.all('*', (req, res) => {
     }
     else {
         const headersList = Object.entries(req.headers);
-        const allHeaders = new HeadersInit();
+        const allHeaders = new fetch_headers_1.default();
         for (let [key, value] of headersList) {
-            console.log(key);
-            console.log(value);
             allHeaders.append(key, value);
         }
         ;
@@ -44,6 +43,7 @@ app.all('*', (req, res) => {
             serverResponse.body.pipe(res);
         })
             .catch(err => {
+            console.error(err);
             res.status(500).json(err);
         });
     }

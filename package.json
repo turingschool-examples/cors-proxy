@@ -19,8 +19,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "typescript": "^3.9.3",
-    "node-fetch": "^2.6.0"
+    "fetch-headers": "^2.0.0",
+    "node-fetch": "^2.6.0",
+    "typescript": "^3.9.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.0.1",

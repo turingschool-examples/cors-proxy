@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import express = require('express');
+import Headers from 'fetch-headers';
 
 const port: number | string = process.env.PORT || 8080;
 const app = express();
@@ -22,10 +23,8 @@ app.all('*', (req, res) => {
     res.send();
   }  else {
     const headersList = Object.entries(req.headers);
-    const allHeaders:HeadersInit= new HeadersInit();
+    const allHeaders: any = new Headers();
     for (let [key, value] of headersList) {
-      console.log(key);
-      console.log(value);
       allHeaders.append(key,<any> value);
 
     };
@@ -35,12 +34,13 @@ app.all('*', (req, res) => {
       return;
     } 
         fetch(targetURL, {
-      headers: allHeaders
+        headers: allHeaders
     })
       .then((serverResponse: any ) => {
        serverResponse.body.pipe(res);
       })
      .catch(err => {
+      console.error(err);
       res.status(500).json(err);
      })
   }
