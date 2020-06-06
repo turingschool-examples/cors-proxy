@@ -21,12 +21,22 @@ app.all('*', (req, res) => {
   if (req.method === "OPTIONS") {
     res.send();
   }  else {
+    const headersList = Object.entries(req.headers);
+    const allHeaders:HeadersInit= new HeadersInit();
+    for (let [key, value] of headersList) {
+      console.log(key);
+      console.log(value);
+      allHeaders.append(key,<any> value);
+
+    };
     const targetURL: string = req.get('Target-URL');
     if ( !targetURL ) {
       res.status(500).json({"message": "No 'Target-URL' Request Header specified"});
       return;
     } 
-    fetch(targetURL)
+        fetch(targetURL, {
+      headers: allHeaders
+    })
       .then((serverResponse: any ) => {
        serverResponse.body.pipe(res);
       })

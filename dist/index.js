@@ -24,12 +24,22 @@ app.all('*', (req, res) => {
         res.send();
     }
     else {
+        const headersList = Object.entries(req.headers);
+        const allHeaders = new HeadersInit();
+        for (let [key, value] of headersList) {
+            console.log(key);
+            console.log(value);
+            allHeaders.append(key, value);
+        }
+        ;
         const targetURL = req.get('Target-URL');
         if (!targetURL) {
             res.status(500).json({ "message": "No 'Target-URL' Request Header specified" });
             return;
         }
-        node_fetch_1.default(targetURL)
+        node_fetch_1.default(targetURL, {
+            headers: allHeaders
+        })
             .then((serverResponse) => {
             serverResponse.body.pipe(res);
         })
