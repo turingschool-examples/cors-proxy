@@ -5,7 +5,6 @@ const app  = require( 'express')();
 const cors  = require( 'cors');
 const bodyParser  = require( 'body-parser');
 const https = require('https');
-const http = require('http');
 
 const port = process.env.PORT || 8080;
 
