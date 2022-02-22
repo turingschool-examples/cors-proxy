@@ -29,7 +29,15 @@ app.all('*', (req, res) => {
             res.status(500).json({ "message": "No 'Target-URL' Request Header specified" });
             return;
         }
-        node_fetch_1.default(targetURL)
+        let headerData = null;
+        if (req.headers.authorization) {
+            headerData = {
+                headers: {
+                    'Authorization': req.headers.authorization,
+                },
+            };
+        }
+        node_fetch_1.default(targetURL, headerData)
             .then((serverResponse) => {
             serverResponse.body.pipe(res);
         })
