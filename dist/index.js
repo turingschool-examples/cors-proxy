@@ -29,7 +29,7 @@ app.all('*', (req, res) => {
             res.status(500).json({ "message": "No 'Target-URL' Request Header specified" });
             return;
         }
-        let headerData = null;
+        let headerData = {};
         if (req.headers.authorization) {
             headerData = {
                 headers: {
