@@ -28,7 +28,7 @@ app.all('*', (req, res) => {
       return;
     }
 
-    let headerData = null;
+    let headerData = {};
 
     if (req.headers.authorization) {
       headerData =  {
